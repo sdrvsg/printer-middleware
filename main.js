@@ -1,4 +1,4 @@
-const { app, Tray, Menu, nativeImage } = require('electron')
+const { app, Notification, Tray, Menu, nativeImage } = require('electron')
 const { updateElectronApp } = require('update-electron-app');
 const axios = require('axios')
 const escpos = require('escpos')
@@ -19,7 +19,11 @@ const poll = (device, printer) => {
         (response) => {
 
             response.data?.orders?.forEach(order => {
-                console.info(order);
+                new Notification({
+                    title: 'Печать чека',
+                    body: order,
+                    icon: 'assets/img/icon.png',
+                }).show()
             })
 
             device?.open(function (error){
