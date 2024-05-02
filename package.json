@@ -1,6 +1,6 @@
 {
   "name": "fix-pizza-printer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fix pizza backoffice utility for printing receipts",
   "main": "main.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "publish": "(for /F \"tokens=*\" %i in (.env) do set %i) && electron-forge publish"
   },
   "keywords": [],
   "author": "Sergoid",

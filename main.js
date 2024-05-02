@@ -4,7 +4,10 @@ const axios = require('axios')
 const escpos = require('escpos')
 escpos.USB = require('escpos-usb')
 require('dotenv').config()
-updateElectronApp();
+updateElectronApp()
+
+if (require('electron-squirrel-startup'))
+    app.quit()
 
 const AppSecret = process.env.APP_SECRET;
 const poll = (device, printer) => {

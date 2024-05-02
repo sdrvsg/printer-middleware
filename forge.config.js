@@ -32,11 +32,11 @@ module.exports = {
       name: '@electron-forge/publisher-github',
       config: {
         repository: {
-          owner: 'github-user-name',
-          name: 'github-repo-name'
+          owner: 'sdrvsg',
+          name: 'printer-middleware'
         },
         prerelease: false,
-        draft: true
+        draft: false
       }
     }
   ],
