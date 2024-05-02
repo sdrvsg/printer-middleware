@@ -1,6 +1,6 @@
 {
   "name": "fix-pizza-printer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Fix pizza backoffice utility for printing receipts",
   "main": "main.js",
   "scripts": {
