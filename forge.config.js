@@ -4,7 +4,8 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: 'assets/img/icon'
+    icon: 'assets/img/icon',
+    name: 'Fix Pizza Printer',
   },
   rebuildConfig: {},
   makers: [
