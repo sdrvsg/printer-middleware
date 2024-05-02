@@ -18,12 +18,11 @@ const poll = (device, printer) => {
     }).then(
         (response) => {
 
-            const icon = nativeImage.createFromDataURL('https://fiks-pizza.ru/img/favicon-app-store.png')
             response.data?.orders?.forEach(order => {
                 new Notification({
                     title: 'Печать чека',
                     body: order,
-                    icon: icon,
+                    icon: nativeImage.createFromPath('./assets/img/icon.png'),
                 }).show()
             })
 
@@ -45,7 +44,7 @@ const poll = (device, printer) => {
 
 app.whenReady().then(() => {
 
-    const icon = nativeImage.createFromDataURL('https://fiks-pizza.ru/img/favicon-app-store.png')
+    const icon = nativeImage.createFromPath('./assets/img/icon.png')
     const tray = new Tray(icon)
     const contextMenu = Menu.buildFromTemplate([
         { label: 'Выход', type: 'normal', role: 'quit' },
