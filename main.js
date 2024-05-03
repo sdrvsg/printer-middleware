@@ -53,9 +53,9 @@ app.whenReady().then(() => {
     tray.setContextMenu(contextMenu)
     tray.setToolTip('Fix Pizza Printer')
 
-    // const device  = new escpos.USB(0x76c, 0x0302)
-    // const printer = new escpos.Printer(device, {encoding: 'utf8'})
+    const device  = new escpos.USB(0x76c, 0x0302)
+    const printer = new escpos.Printer(device, {encoding: 'utf8'})
 
-    setInterval(poll/*.bind(device, printer)*/, 1000)
+    setInterval(poll.bind(device, printer), 1000)
 
 })
