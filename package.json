@@ -15,7 +15,7 @@
     "url": "https://github.com/sdrvsg/printer-middleware.git"
   },
   "files": [
-    "./assets/**/*"
+    "assets/**/*"
   ],
   "keywords": [],
   "author": "Sergoid",
