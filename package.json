@@ -39,5 +39,8 @@
     "escpos": "^3.0.0-alpha.6",
     "escpos-usb": "^3.0.0-alpha.4",
     "update-electron-app": "^3.0.0"
+  },
+  "overrides": {
+    "usb": "^1.9.2"
   }
 }

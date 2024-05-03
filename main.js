@@ -1,9 +1,13 @@
 const { app, Notification, Tray, Menu, nativeImage } = require('electron')
-const { updateElectronApp } = require('update-electron-app');
 const axios = require('axios')
+require('dotenv').config()
+
 const escpos = require('escpos')
 escpos.USB = require('escpos-usb')
-require('dotenv').config()
+
+console.log(escpos.USB.findPrinter())
+
+const { updateElectronApp } = require('update-electron-app');
 updateElectronApp()
 
 if (require('electron-squirrel-startup'))
@@ -11,16 +15,16 @@ if (require('electron-squirrel-startup'))
 
 const AppSecret = process.env.APP_SECRET;
 const poll = (device, printer) => {
-    axios.get('https://fikspizza.ru/api/receipts', {
+    axios.get('https://fiks-pizza.ru/api/receipts', {
         headers: {
             'X-App-Secret': AppSecret
         }
     }).then(
         (response) => {
 
-            response.data?.orders?.forEach(order => {
+            response.data?.new_orders?.forEach(order => {
                 new Notification({
-                    title: 'Печать чека',
+                    title: 'Новый заказ',
                     body: order,
                     icon: nativeImage.createFromPath('./assets/img/icon.png'),
                 }).show()
@@ -30,10 +34,10 @@ const poll = (device, printer) => {
 
                 response.data?.orders?.forEach(order => {
                     printer.text(order)
-                    this.cut()
+                    printer.cut()
                 })
 
-                this.close()
+                printer.close()
 
             });
 
@@ -53,9 +57,9 @@ app.whenReady().then(() => {
     tray.setContextMenu(contextMenu)
     tray.setToolTip('Fix Pizza Printer')
 
-    const device  = new escpos.USB(0x76c, 0x0302)
-    const printer = new escpos.Printer(device, {encoding: 'utf8'})
+    const device  = new escpos.USB(0x076c, 0x0302)
+    const printer = new escpos.Printer(device, {encoding: 'cp866'})
 
-    setInterval(poll.bind(device, printer), 1000)
+    setInterval(() => poll(device, printer), 1000)
 
 })
